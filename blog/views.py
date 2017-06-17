@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 
 def post_list(request):
@@ -9,13 +9,13 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    tags = Post.tags.all()
+    tags = Tag.objects.filter(post__in=[pk]).distinct()
     return render(request, 'blog/post_detail.html', {'post': post, 'tags': tags})
 
 
 def posts_by_category(request, category_slug):
     category = Category.objects.get(slug=category_slug)
-    posts = Post.objects.filter(category__slug=category_slug)
+    posts = Post.objects.filter(category__slug=category_slug).order_by('-pub_date')
     context = {
         'category': category,
         'posts': posts
@@ -25,8 +25,8 @@ def posts_by_category(request, category_slug):
 
 
 def posts_by_tag(request, tag_slug):
-    tag = Post.tags.get(slug=tag_slug)
-    posts = Post.objects.filter(tags__name=tag)
+    tag = Tag.objects.get(slug=tag_slug)
+    posts = Post.objects.filter(tags__name=tag).order_by('-pub_date')
     context = {
         'tag': tag,
         'posts': posts

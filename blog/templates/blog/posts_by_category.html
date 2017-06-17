@@ -10,82 +10,13 @@
 <div class="blog-area blog-classic right-sidebar">
 
     <div class="row row-tb-20">
-        <h2>All the posts under category - {{ category.name }} {{ tag.name }}</h2>
-        <!-- Blog Post -->
-{% for post in posts %}
-        <div class="blog-post col-xs-12">
-
-
-            <article class="entry panel">
-
-                <figure class="entry-media post-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/blog/blog_01.jpg">
-                    <div class="entry-date">
-                        <h4>{{ post.pub_date|date:"d"}}</h4>
-                        <h6>{{ post.pub_date|date:"M" }}</h6>
-                    </div>
-                </figure>
-                <div class="entry-wrapper prl-20 prl-md-30 pt-20 pt-md-30 pb-15">
-                    <header class="entry-header">
-                        <h4 class="entry-title mb-10 mb-md-15 t-uppercase">
-                            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-                        </h4>
-                        <div class="entry-meta mb-10">
-                            <ul class="tag-info list-inline">
-                                <li><i class="icon fa fa-user"></i>{{ post.author }}</li>
-                                <li><i class="icon fa fa-comments"></i>{{ post.category.name }}</li>
-                            </ul>
-                        </div>
-                    </header>
-                    <div class="entry-content">
-                        <p class="entry-summary">{{ post.content|linebreaks }}</p>
-                    </div>
-                    <footer class="entry-footer text-right">
-                        <a href="blog_single_standard.html" class="more-link btn btn-link">Continue reading <i class="icon fa fa-long-arrow-right"></i></a>
-                    </footer>
-
-                </div>
-
-            </article>
-
-
-        </div>
-{% empty %}
     <div class="blog-post col-xs-12">
-        <article class="entry panel">
-            <p>Записей нет</p>
-        </article>
+        <h2>Все записи из категории - {{ category.name }} {{ tag.name }}</h2>
     </div>
-{% endfor %}
-        <!-- End Blog Post -->
+    {% block post_list %}
+        {% include 'blog/post_list_tmp.html' %}
+    {% endblock post_list %}
 
-    </div>
-
-    <!-- Blog Pagination -->
-    <div class="page-pagination text-center mt-30 p-10 panel">
-        <nav>
-            <!-- Page Pagination -->
-            <ul class="page-pagination">
-                <li><a class="page-numbers previous" href="#">Previous</a>
-                </li>
-                <li><a href="#" class="page-numbers">1</a>
-                </li>
-                <li><span class="page-numbers current">2</span>
-                </li>
-                <li><a href="#" class="page-numbers">3</a>
-                </li>
-                <li><a href="#" class="page-numbers">4</a>
-                </li>
-                <li><span class="page-numbers dots">...</span>
-                </li>
-                <li><a href="#" class="page-numbers">20</a>
-                </li>
-                <li><a href="#" class="page-numbers next">Next</a>
-                </li>
-            </ul>
-            <!-- End Page Pagination -->
-        </nav>
-    </div>
-    <!-- End Blog Pagination -->
 
 </div>
 <!-- End Blog Area -->
