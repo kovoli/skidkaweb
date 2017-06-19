@@ -19,10 +19,13 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug',)
     search_fields = ('name',)
 
+    prepopulated_fields = {'slug': ('name',)}
+
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug',)
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)

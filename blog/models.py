@@ -7,6 +7,11 @@ class Category(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     author = models.ForeignKey('auth.User')
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super(Category, self).save()
+
     def __str__(self):
         return self.name
 
@@ -15,6 +20,11 @@ class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     author = models.ForeignKey('auth.User')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super(Tag, self).save()
 
     def __str__(self):
        return self.name
