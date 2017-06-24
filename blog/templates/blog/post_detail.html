@@ -28,7 +28,7 @@
                             <ul class="tag-info list-inline">
                                 <li><i class="icon fa fa-user"></i>{{ post.author }}</li>
                                 <li><i class="icon fa fa-comments"></i>
-                                    <a href="http://127.0.0.1:8000/blog/category/{{ post.category.slug }}">{{ post.category.name }}</a>
+                                    <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -43,7 +43,7 @@
                                 <li>Tags :</li>
                                 {% for tag in tags %}
                                 <li>
-                                    <a href="http://127.0.0.1:8000/blog/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                                    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
                                 </li>
                                 {% endfor %}
                             </ul>

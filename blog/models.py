@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from unidecode import unidecode  # Длy трансляции поля slug
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -15,6 +16,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('posts_by_category', args=[self.slug])
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -28,6 +36,13 @@ class Tag(models.Model):
 
     def __str__(self):
        return self.name
+
+    def get_absolute_url(self):
+        return reverse('posts_by_tag', args=[self.slug])
+
+    class Meta:
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
 
 
 class Post(models.Model):
@@ -46,6 +61,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.id, self.slug])
+
+    class Meta:
+        verbose_name = 'Запись'
+        verbose_name_plural = 'Записи'
 
 
 
