@@ -9,9 +9,9 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     date_hierarchy = 'pub_date'
 
-    # filter_horizontal = ('tags',)
-    raw_id_fields = ('tags',)
-    #prepopulated_fields = {'slug': ('title', )}  # Автоматически пишет slug
+    filter_horizontal = ('tags',)
+    # raw_id_fields = ('tags',)
+    # prepopulated_fields = {'slug': ('title', )}  # Автоматически пишет slug
     readonly_fields = ('slug',)  # поле только для чтения
     fields = ('title', 'slug', 'content', 'author', 'category', 'tags',) # Очередность полей в админке
 
