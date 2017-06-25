@@ -1,0 +1,24 @@
+<div class="widget recent-posts panel pt-20 prl-20">
+    <h3 class="widget-title h-title">Recent Posts</h3>
+    <div class="widget-body ptb-30">
+        {% for post in latest_posts %}
+        <div class="recent-post media">
+            <div class="post-thumb media-left">
+                <a href="{{ post.get_absolute_url }}">
+                    <img class="media-object" src="assets/images/blog/thumb_1.jpg" alt="">
+                </a>
+            </div>
+            <div class="media-body">
+                <h5 class="font-15 mb-10">
+<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+</h5>
+                <ul class="post-meta list-inline">
+                    <li> <i class="ico fa fa-user mr-5"></i>John Doe</li>
+                    <li><i class="ico fa fa-calendar mr-5"></i>20 Mar 2017</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>

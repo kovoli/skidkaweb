@@ -61,7 +61,7 @@
                     </footer>
                 </div>
             </article>
-            <ul class="posts-nav ptb-40 mb-20">
+            <!--<ul class="posts-nav ptb-40 mb-20">
                 <li class="next-post">
                     <a href="#"><i class="fa fa-angle-right"></i>
         <span>Next Post</span>
@@ -72,12 +72,12 @@
         <span>Previous Post</span>
         Tempore velit atque porro ?</a>
                 </li>
-            </ul>
+            </ul>-->
         </div>
         <!-- End Blog Post -->
 
         <!-- Post Author -->
-        <div class="col-xs-12">
+        <!--<div class="col-xs-12">
             <div class="post-author-area panel media p-20">
                 <figure class="media-left">
                     <img class="media-object" src="assets/images/avatars/blog_author.jpg" alt="">
@@ -105,7 +105,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- End Post Author -->
 
         <!-- Related Posts -->
@@ -116,295 +116,24 @@
                 <h3 class="related-posts-title h-title mb-30">Related Posts</h3>
 
                 <div class="row">
+                    {% for post in similar_posts %}
                     <div class="col-sm-4">
-                        <a href="#">
+                        <a href="{{ post.get_absolute_url }}">
                             <figure class="mb-10">
                                 <img src="assets/images/blog/post_10.jpg" alt="">
                             </figure>
-                            <p class="font-14">Proin tempus ipsum vitae velit convallis venenatis.</p>
+                            <p class="font-14">{{ post.title }}</p>
                         </a>
                     </div>
-                    <div class="col-sm-4">
-                        <a href="#">
-                            <figure class="mb-10">
-                                <img src="assets/images/blog/post_11.jpg" alt="">
-                            </figure>
-                            <p class="font-14">Maecenas tempus metus vel felis volutpat sollicitudin.</p>
-                        </a>
-                    </div>
-                    <div class="col-sm-4">
-                        <a href="#">
-                            <figure class="mb-10">
-                                <img src="assets/images/blog/post_01.jpg" alt="">
-                            </figure>
-                            <p class="font-14">Curabitur vel felis pretium, blandit arcu.</p>
-                        </a>
-                    </div>
+                {% empty %}
+                    There are no similar posts yet.{% endfor %}
                 </div>
+
             </div>
         </div>
         <!-- End Related Posts -->
 
-        <!-- Comments Area -->
-        <div id="commentsArea" class="comments-area col-xs-12">
-            <div class="row row-v-20">
-                <div class="col-xs-12">
-                    <div class="posted-comments panel pt-20 pb-30 prl-20">
 
-                        <h3 class="posted-comments-title h-title mb-30">7 Comments</h3>
-                        <ol class="comment-list">
-
-
-                            <li class="comment comment-bypostauthor media">
-
-
-
-                                <figure class="comment-author-thumb media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="assets/images/avatars/avatar_07.jpg" alt="" />
-                                    </a>
-                                </figure>
-                                <article class="comment-wrapper media-body">
-                                    <!-- Comment Metadata -->
-                                    <div class="comment-meta mb-5">
-                                        <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                        <h5 class="comment-author-name mb-5 ">John Doe</h5>
-                                        <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                    </div>
-                                    <!-- End Comment Metadata -->
-
-                                    <!-- Comment Content -->
-                                    <div class="comment-content color-mid">
-                                        <p>Rrhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque.</p>
-                                    </div>
-                                    <!-- End Comment Content -->
-                                </article>
-
-                                <ol class="comment-replays">
-
-                                    <li class="comment media">
-
-
-
-                                        <figure class="comment-author-thumb media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="assets/images/avatars/avatar_08.jpg" alt="" />
-                                            </a>
-                                        </figure>
-
-                                        <article class="comment-wrapper media-body">
-
-                                            <!-- End Comment Metadata -->
-                                            <div class="comment-meta mb-5">
-                                                <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                                <h5 class="comment-author-name mb-5">John Doe</h5>
-                                                <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                            </div>
-
-                                            <!-- Comment Content -->
-                                            <div class="comment-content color-mid">
-                                                <p>First replay for First comment .</p>
-                                            </div>
-                                            <!-- End Comment Content -->
-                                        </article>
-                                    </li>
-
-
-                                    <li class="comment media comment-bypostauthor">
-
-
-
-                                        <figure class="comment-author-thumb media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="assets/images/avatars/avatar_07.jpg" alt="" />
-                                            </a>
-                                        </figure>
-
-                                        <article class="comment-wrapper media-body">
-
-                                            <!-- End Comment Metadata -->
-                                            <div class="comment-meta mb-5">
-                                                <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                                <h5 class="comment-author-name mb-5">John Doe</h5>
-                                                <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                            </div>
-
-                                            <!-- Comment Content -->
-                                            <div class="comment-content color-mid">
-                                                <p>Second Reply for First comment by author.</p>
-                                            </div>
-                                            <!-- End Comment Content -->
-                                        </article>
-                                    </li>
-
-                                </ol>
-                            </li>
-
-                            <li class="comment media">
-
-
-
-                                <figure class="comment-author-thumb media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="assets/images/avatars/avatar_03.jpg" alt="" />
-                                    </a>
-                                </figure>
-                                <article class="comment-wrapper media-body">
-                                    <!-- Comment Metadata -->
-                                    <div class="comment-meta mb-5">
-                                        <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                        <h5 class="comment-author-name mb-5 ">Jhon Kennadi</h5>
-                                        <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                    </div>
-                                    <!-- End Comment Metadata -->
-
-                                    <!-- Comment Content -->
-                                    <div class="comment-content color-mid">
-                                        <p>Eum in dicta veniam interesset, harum fuisset te nam.</p>
-                                    </div>
-                                    <!-- End Comment Content -->
-                                </article>
-
-                            </li>
-
-                            <li class="comment media">
-
-
-
-                                <figure class="comment-author-thumb media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="assets/images/avatars/avatar_04.jpg" alt="" />
-                                    </a>
-                                </figure>
-                                <article class="comment-wrapper media-body">
-                                    <!-- Comment Metadata -->
-                                    <div class="comment-meta mb-5">
-                                        <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                        <h5 class="comment-author-name mb-5 ">John Doe</h5>
-                                        <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                    </div>
-                                    <!-- End Comment Metadata -->
-
-                                    <!-- Comment Content -->
-                                    <div class="comment-content color-mid">
-                                        <p>Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris.</p>
-                                    </div>
-                                    <!-- End Comment Content -->
-                                </article>
-
-                                <ol class="comment-replays">
-
-                                    <li class="comment media">
-
-
-
-                                        <figure class="comment-author-thumb media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="assets/images/avatars/avatar_05.jpg" alt="" />
-                                            </a>
-                                        </figure>
-
-                                        <article class="comment-wrapper media-body">
-
-                                            <!-- End Comment Metadata -->
-                                            <div class="comment-meta mb-5">
-                                                <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                                <h5 class="comment-author-name mb-5">John Doe</h5>
-                                                <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                            </div>
-
-                                            <!-- Comment Content -->
-                                            <div class="comment-content color-mid">
-                                                <p>Eum in dicta veniam interesset, harum fuisset te nam.</p>
-                                            </div>
-                                            <!-- End Comment Content -->
-                                        </article>
-                                    </li>
-
-                                </ol>
-                            </li>
-
-                            <li class="comment media">
-
-
-
-                                <figure class="comment-author-thumb media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="assets/images/avatars/avatar_04.jpg" alt="" />
-                                    </a>
-                                </figure>
-                                <article class="comment-wrapper media-body">
-                                    <!-- Comment Metadata -->
-                                    <div class="comment-meta mb-5">
-                                        <a href="#" class="comment-reply-link btn btn-xs btn-gray btn-rounded">Reply <i class="fa fa-reply"></i></a>
-                                        <h5 class="comment-author-name mb-5 ">John Doe</h5>
-                                        <span class="color-muted">December 31, 2001 at 11:10 pm</span>
-                                    </div>
-                                    <!-- End Comment Metadata -->
-
-                                    <!-- Comment Content -->
-                                    <div class="comment-content color-mid">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium perspiciatis, unde rerum libero ea voluptatibus eveniet.</p>
-                                    </div>
-                                    <!-- End Comment Content -->
-                                </article>
-
-                            </li>
-
-                        </ol>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div id="commentRespond" class="comment-respond panel pt-20 pb-30 prl-20">
-                        <h3 class="comment-respond-title h-title mb-30">Leave A Comment</h3>
-                        <form action="#" method="post" id="commentForm" class="comment-form">
-                            <div class="row row-10">
-                                <div class="col-xs-12">
-                                    <div class="comment-notes alert alert-info">
-                                        <span>Your email address will not be published.</span> Required fields are marked <span class="required">*</span>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="comment-form-author form-group">
-                                        <label for="author">Name <span class="required">*</span>
-                                        </label>
-                                        <input id="author" class="form-control" name="author" type="text" value="" required='required' />
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="comment-form-email form-group">
-                                        <label for="email">Email <span class="required">*</span>
-                                        </label>
-                                        <input id="email" class="form-control" name="email" type="email" value="" required='required' />
-                                    </div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="comment-form-url form-group">
-                                        <label for="url">Website</label>
-                                        <input id="url" class="form-control" name="url" type="url" value="" />
-                                    </div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="comment-form-comment form-group">
-                                        <label for="comment">Comment</label>
-                                        <textarea id="comment" class="form-control" name="comment" cols="45" rows="4" required="required"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="form-submit">
-                                        <input name="submit" type="submit" id="submit" class="btn submit" value="Post Comment" />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Comments Area -->
 
     </div>
 </div>
