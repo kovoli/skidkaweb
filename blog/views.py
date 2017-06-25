@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
+from skidkaweb import helpers
 from .models import Post, Category, Tag
 
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-pub_date')
+    post_list = Post.objects.all().order_by('-pub_date')
+    posts = helpers.pg_records(request, post_list, 1)
+
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 

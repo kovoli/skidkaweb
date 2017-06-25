@@ -54,22 +54,25 @@
         <nav>
             <!-- Page Pagination -->
             <ul class="page-pagination">
-                <li><a class="page-numbers previous" href="#">Previous</a>
+                {% if posts.has_previous %}
+                <li>
+                    <a class="page-numbers previous" href="?page={{ posts.previous_page_number }}"><</a>
                 </li>
-                <li><a href="#" class="page-numbers">1</a>
-                </li>
-                <li><span class="page-numbers current">2</span>
-                </li>
-                <li><a href="#" class="page-numbers">3</a>
-                </li>
-                <li><a href="#" class="page-numbers">4</a>
-                </li>
-                <li><span class="page-numbers dots">...</span>
-                </li>
-                <li><a href="#" class="page-numbers">20</a>
-                </li>
-                <li><a href="#" class="page-numbers next">Next</a>
-                </li>
+                {% endif %}
+
+                {% for i in posts.paginator.page_range %}
+                    {% ifequal i  posts.number %}
+                        <li><span class="page-numbers current">{{ i }}</span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}" class="page-numbers ">{{ i }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                    <li><a href="?page={{ posts.next_page_number }}" class="page-numbers next">></a></li>
+                {% else %}
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+                {% endif %}
             </ul>
             <!-- End Page Pagination -->
         </nav>
