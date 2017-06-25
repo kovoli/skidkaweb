@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def pg_records(request, list, num):
-    print(request)
+
     paginator = Paginator(list, num)
 
     # get the page parameter from the query string

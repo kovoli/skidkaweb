@@ -3,17 +3,18 @@ from .models import Post, Category, Tag
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pub_date', 'author', 'category', 'slug', )
+    list_display = ('title', 'publish', 'author', 'category', 'status')
     search_fields = ['title', 'content']
-    ordering = ['-pub_date']
-    list_filter = ['pub_date']
-    date_hierarchy = 'pub_date'
+    ordering = ['status', 'publish']
+    list_filter = ('status', 'created', 'publish', 'author')
+    date_hierarchy = 'publish'
+
 
     filter_horizontal = ('tags',)
-    # raw_id_fields = ('tags',)
+    # raw_id_fields = ('author',)
     # prepopulated_fields = {'slug': ('title', )}  # Автоматически пишет slug
     readonly_fields = ('slug',)  # поле только для чтения
-    fields = ('title', 'slug', 'content', 'author', 'category', 'tags',) # Очередность полей в админке
+    fields = ('title', 'slug', 'content', 'publish', 'status', 'author', 'category', 'tags',) # Очередность полей в админке
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug',)

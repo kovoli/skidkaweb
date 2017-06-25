@@ -7,8 +7,8 @@
 
                 <figure class="entry-media post-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/blog/blog_01.jpg">
                     <div class="entry-date">
-                        <h4>{{ post.pub_date|date:"d"}}</h4>
-                        <h6>{{ post.pub_date|date:"M" }}</h6>
+                        <h4>{{ post.publish|date:"d"}}</h4>
+                        <h6>{{ post.publish|date:"M" }}</h6>
                     </div>
                 </figure>
                 <div class="entry-wrapper prl-20 prl-md-30 pt-20 pt-md-30 pb-15">
@@ -26,7 +26,7 @@
                         </div>
                     </header>
                     <div class="entry-content">
-                        <p class="entry-summary">{{ post.content|linebreaks }}</p>
+                        <p class="entry-summary">{{ post.content|truncatewords:30|linebreaks }}</p>
                     </div>
                     <footer class="entry-footer text-right">
                         <a href="blog_single_standard.html" class="more-link btn btn-link">Continue reading <i class="icon fa fa-long-arrow-right"></i></a>
@@ -59,19 +59,29 @@
                     <a class="page-numbers previous" href="?page={{ posts.previous_page_number }}"><</a>
                 </li>
                 {% endif %}
-
                 {% for i in posts.paginator.page_range %}
-                    {% ifequal i  posts.number %}
+                    {% if posts.number == i %}
                         <li><span class="page-numbers current">{{ i }}</span></li>
                     {% else %}
-                        <li><a href="?page={{ i }}" class="page-numbers ">{{ i }}</a></li>
-                    {% endifequal %}
-                {% endfor %}
+                        <!-- For the 1st page we do not use ?page=1 -->
+                        {% if i == 1 %}
+                            <li><a href="?page={{ i }}" class="page-numbers ">{{ i }}</a></li>
 
+                        {% else %}
+                            <!-- Show current page and +-3 pages -->
+                            {% if i|add:"-3" <= posts.number and posts.number <= i|add:"3" %}
+                                <li><a href="?page={{ i }}" class="page-numbers ">{{ i }}</a></li>
+
+                            <!-- Shows every 10th page and the last page -->
+                            {% elif i|divisibleby:"10" or i == posts.paginator.num_pages %}
+                                <li><a href="?page={{ i }}" class="page-numbers ">{{ i }}</a></li>
+                            {% endif %}
+
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
                 {% if posts.has_next %}
                     <li><a href="?page={{ posts.next_page_number }}" class="page-numbers next">></a></li>
-                {% else %}
-                    <li class="disabled"><a href="#">&raquo;</a></li>
                 {% endif %}
             </ul>
             <!-- End Page Pagination -->
